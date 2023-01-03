@@ -1,15 +1,14 @@
 #include "finder.h"
 #include <stdio.h>
+#include <stdlib.h>
 #define LINE 256
 #define WORD 30
 
 int main()
 {
-    char s[WORD];
-    int len = getword(s);
-    char str[len];
-    for(int i=0;i<len;i++)
-        str[i] = s[i];
+    char* str = (char*)malloc(WORD * sizeof(char));
+    int len = getword(str);
+    str = (char*)realloc(str, len * sizeof(char));
     char command = getc(stdin);
 
     getc(stdin);
@@ -20,5 +19,6 @@ int main()
     else if(command == 'b')
         print_similar_words(str);
 
+    free(str);
     return 0;
 }

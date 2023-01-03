@@ -1,39 +1,42 @@
 #include "finder.h"
 #include <stdio.h>
+#include <stdlib.h>
 #define LINE 256
 #define WORD 30
 
-void print_lines(char str[]) {
-    int len = 1;
-    while(len != -1) {
-        char s[LINE];
-        len = getlines(s);
-        char line[len];
-        for(int i=0;i<len;i++)
-            line[i] = s[i];
+void print_lines(char* str) {
+    int len;
+    while(1) {
+        char* line = (char*)malloc(LINE * sizeof(char));
+        len = getlines(line);
+        if(len == -1)
+            break;
+        line = (char*)realloc(line, len * sizeof(char));
         if(substring(line, str) == 1)
             for(int i=0;i<len;i++) 
                 putc(line[i], stdout);
+        free(line);
     }
 }
 
-void print_similar_words(char str[]) {
-    int len = 1;
-    while(len != -1) {
-        char w[WORD];
-        len = getword(w);
-        char word[len];
-        for(int i=0;i<len;i++)
-            word[i] = w[i];
+void print_similar_words(char* str) {
+    int len;
+    while(1) {
+        char* word = (char*)malloc(WORD * sizeof(WORD));
+        len = getword(word);
+        if(len == -1)
+            break;
+        word = (char*)realloc(word, len * sizeof(char));
         if(similar(str, word, 1) == 1) {
             for(int i=0;i<len-1;i++)
                 putc(word[i], stdout);
             putc('\n', stdout);
         }
+        free(word);
     }
 }
 
-int substring(char str1[], char str2[]) {
+int substring(char* str1, char* str2) {
     int index1 = 0, index2;
     int isIn;
     int saver;
@@ -52,7 +55,7 @@ int substring(char str1[], char str2[]) {
     return isIn;
 }
 
-int similar(char str1[], char str2[], int n) {
+int similar(char* str1, char* str2, int n) {
     int index1 = 0, index2 = 0;
     int debt = 0;
     while((str2[index2] != '\n') && (str2[index2] != '\t') && (str2[index2] != ' ') && (debt <= n)) {
