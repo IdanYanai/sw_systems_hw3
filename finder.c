@@ -42,7 +42,7 @@ void print_similar_words(char* str) {
 
 int substring(char* str1, char* str2) {
     int index1 = 0, index2;
-    int isIn;
+    int isIn = 0;
     int saver;
     while((str1[index1] != '\n') && (isIn != 1)) {
         index2 = 0;
