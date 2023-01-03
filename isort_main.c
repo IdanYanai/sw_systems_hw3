@@ -12,7 +12,7 @@ int main()
 
     for(int j=0;j<49;++j)
         printf("%d,", *(arr+j));
-    printf("%d", *(arr+49));
+    printf("%d\n", *(arr+49));
 
     free(arr);
     return 0;

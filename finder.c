@@ -3,7 +3,7 @@
 #define LINE 256
 #define WORD 30
 
-void print_lines(char* str) {
+void print_lines(char str[]) {
     int len = 1;
     while(len != -1) {
         char s[LINE];
@@ -17,7 +17,7 @@ void print_lines(char* str) {
     }
 }
 
-void print_similar_words(char* str) {
+void print_similar_words(char str[]) {
     int len = 1;
     while(len != -1) {
         char w[WORD];
@@ -33,7 +33,7 @@ void print_similar_words(char* str) {
     }
 }
 
-int substring(char* str1, char* str2) {
+int substring(char str1[], char str2[]) {
     int index1 = 0, index2;
     int isIn;
     int saver;
@@ -52,7 +52,7 @@ int substring(char* str1, char* str2) {
     return isIn;
 }
 
-int similar(char* str1, char* str2, int n) {
+int similar(char str1[], char str2[], int n) {
     int index1 = 0, index2 = 0;
     int debt = 0;
     while((str2[index2] != '\n') && (str2[index2] != '\t') && (str2[index2] != ' ') && (debt <= n)) {
