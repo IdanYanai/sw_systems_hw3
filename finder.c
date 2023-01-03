@@ -9,8 +9,10 @@ void print_lines(char* str) {
     while(1) {
         char* line = (char*)malloc(LINE * sizeof(char));
         len = getlines(line);
-        if(len == -1)
+        if(len == -1) {
+            free(line);
             break;
+        }
         line = (char*)realloc(line, len * sizeof(char));
         if(substring(line, str) == 1)
             for(int i=0;i<len;i++) 
@@ -24,8 +26,10 @@ void print_similar_words(char* str) {
     while(1) {
         char* word = (char*)malloc(WORD * sizeof(WORD));
         len = getword(word);
-        if(len == -1)
+        if(len == -1) {
+            free(word);
             break;
+        }
         word = (char*)realloc(word, len * sizeof(char));
         if(similar(str, word, 1) == 1) {
             for(int i=0;i<len-1;i++)
